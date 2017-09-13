@@ -116,8 +116,6 @@ class ServerProtocol(Protocol):
                 self.transport.write(new_packet_se)
             else:
                 print("Server: Wrong packet received on server side.")
-                print(packet)
-                print("Server: wrong " + str(self.state))
                 break
 
     def connection_lost(self, exc):
