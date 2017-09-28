@@ -68,7 +68,8 @@ class PassThroughLayer1(StackingProtocol):
 
     def connection_made(self, transport):
         self.transport = transport
-        self.higherProtocol().connection_made(self.transport)
+        higher_transport = StackingTransport(self.transport)
+        self.higherProtocol().connection_made(higher_transport)
 
     def data_received(self, data):
         print("Client: Data passes up PassThroughLayer1.")
@@ -85,7 +86,8 @@ class PassThroughLayer2(StackingProtocol):
 
     def connection_made(self, transport):
         self.transport = transport
-        self.higherProtocol().connection_made(self.transport)
+        higher_transport = StackingTransport(self.transport)
+        self.higherProtocol().connection_made(higher_transport)
 
     def data_received(self, data):
         print("Client: Data passes up PassThroughLayer2.")
